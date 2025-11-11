@@ -15,3 +15,20 @@ test("emits a highlight", async () => {
   expect(wrapper.emitted()).toHaveProperty("highlight");
   expect(wrapper.emitted("highlight")?.[0]).toEqual([{ start: 3, end: 6 }]);
 });
+
+test("should not emit a highlight if start range is equal to end range", async () => {
+  const wrapper = mount(HighlightInput);
+
+  const startRange = wrapper.find("[data-test='start-range']");
+  const endRange = wrapper.find("[data-test='end-range']");
+  const rangeForm = wrapper.find("[data-test='range-form']");
+
+  await startRange.setValue(3);
+  await endRange.setValue(3);
+  await rangeForm.trigger("submit");
+
+  expect(wrapper.emitted()).not.toHaveProperty("highlight");
+  expect(wrapper.text()).toContain(
+    "Start range cannot be equal or greater than end range"
+  );
+});
