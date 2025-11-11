@@ -19,3 +19,16 @@ test("when the range starts with a zero, it should return two slices", () => {
 
   expect(actual).toEqual(expected);
 });
+
+test("when given multiple ranges, it should slice appropriately", () => {
+  const text = "onetwothreefour";
+  const ranges = [
+    { start: 3, end: 6 },
+    { start: 6, end: 11 },
+  ];
+
+  const expected = ["one", "two", "three", "four"];
+  const actual = slice(text, ranges);
+
+  expect(actual).toEqual(expected);
+});
