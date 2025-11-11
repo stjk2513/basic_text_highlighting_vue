@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div style="padding: 2rem; font-family: system-ui">
@@ -8,5 +7,4 @@
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
