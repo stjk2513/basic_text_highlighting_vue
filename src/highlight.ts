@@ -3,17 +3,23 @@ export type Range = {
   end: number;
 };
 
-export function slice(text: string, range: Range) {
-  let indents = Array.from(
-    new Set<number>([0, range.start, range.end, text.length])
-  );
+export function slice(text: string, ranges: Range[]) {
+  let indents = new Set<number>();
+  indents.add(0);
+  for (const range of ranges) {
+    indents.add(range.start);
+    indents.add(range.end);
+  }
+  indents.add(text.length);
+
+  let indentsArray: number[] = Array.from(indents);
 
   let words = [];
 
-  let previous: number = indents[0]!;
-  for (let i = 1; i < indents.length; i++) {
-    words.push(text.slice(previous, indents[i]));
-    previous = indents[i]!;
+  let previous: number = indentsArray[0]!;
+  for (let i = 1; i < indentsArray.length; i++) {
+    words.push(text.slice(previous, indentsArray[i]));
+    previous = indentsArray[i]!;
   }
 
   return words;
