@@ -1,8 +1,8 @@
 import { mount } from "@vue/test-utils";
-import RangeInput from "./RangeInput.vue";
+import HighlightInput from "./HighlightInput.vue";
 
 test("emits a highlight", async () => {
-  const wrapper = mount(RangeInput);
+  const wrapper = mount(HighlightInput);
 
   const startRange = wrapper.find("[data-test='start-range']");
   const endRange = wrapper.find("[data-test='end-range']");

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-interface Highlight {
+export interface Highlight {
   start: number;
   end: number;
 }

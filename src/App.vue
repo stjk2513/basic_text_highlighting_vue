@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import RangeInput from "./components/RangeInput.vue";
+import HighlightInputContainer from "./components/HighlightInputContainer.vue";
 </script>
 
 <template>
-  <RangeInput />
+  <HighlightInputContainer />
 </template>
 
 <style scoped></style>
