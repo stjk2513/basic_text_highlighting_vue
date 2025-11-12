@@ -1,4 +1,4 @@
-import { slice, addHighlight, isOverlap } from "./highlight.ts";
+import { slice, mergeHighlights, isOverlap } from "./highlight.ts";
 
 test("when given string and a list of ranges with a single range, it should return three slices of text", () => {
   const text = "onetwothreefour";
@@ -57,6 +57,24 @@ test("when the h1 end is bigger than h2 start, it is an overlap", () => {
   };
 
   expect(isOverlap(highlight1, highlight2)).toBe(true);
+});
+
+test("merges two highlights", () => {
+  const highlight1 = {
+    start: 1,
+    end: 5,
+  };
+  const highlight2 = {
+    start: 4,
+    end: 6,
+  };
+
+  const expected = {
+    start: 1,
+    end: 6,
+  };
+
+  expect(mergeHighlights(highlight1, highlight2)).toStrictEqual(expected);
 });
 
 /*

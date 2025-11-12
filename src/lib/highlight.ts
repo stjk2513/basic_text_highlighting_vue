@@ -56,3 +56,23 @@ export function isOverlap(
 
   return first.end > second.start;
 }
+
+export function mergeHighlights(
+  highlight1: Highlight,
+  highlight2: Highlight
+): Highlight {
+  let first;
+  let second;
+  if (highlight1.start < highlight2.start) {
+    first = highlight1;
+    second = highlight2;
+  } else {
+    first = highlight2;
+    second = highlight1;
+  }
+
+  return {
+    start: first.start,
+    end: second.end,
+  };
+}
