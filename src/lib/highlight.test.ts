@@ -1,4 +1,10 @@
-import { slice, mergeHighlights, isOverlap } from "./highlight.ts";
+import { type Highlight } from "../store/highlights.ts";
+import {
+  slice,
+  mergeHighlights,
+  sortHighlights,
+  isOverlap,
+} from "./highlight.ts";
 
 test("when given string and a list of ranges with a single range, it should return three slices of text", () => {
   const text = "onetwothreefour";
@@ -75,6 +81,41 @@ test("merges two highlights", () => {
   };
 
   expect(mergeHighlights(highlight1, highlight2)).toStrictEqual(expected);
+});
+
+test("sort highlights", () => {
+  const highlights: Highlight[] = [
+    {
+      start: 6,
+      end: 9,
+    },
+    {
+      start: 3,
+      end: 6,
+    },
+    {
+      start: 1,
+      end: 3,
+    },
+  ];
+
+  const expected = [
+    {
+      start: 1,
+      end: 3,
+    },
+
+    {
+      start: 3,
+      end: 6,
+    },
+    {
+      start: 6,
+      end: 9,
+    },
+  ];
+
+  expect(sortHighlights(highlights)).toStrictEqual(expected);
 });
 
 /*

@@ -76,3 +76,7 @@ export function mergeHighlights(
     end: second.end,
   };
 }
+
+export function sortHighlights(highlights: Highlight[]): Highlight[] {
+  return highlights.sort((h1, h2) => h1.start - h2.start);
+}
