@@ -24,11 +24,30 @@ export function addHighlight(
   highlights: Highlight[],
   highlight: Highlight
 ): Highlight[] {
-  const isDuplicate = highlights.some((current) => {
-    return current.start === highlight.start && current.end === highlight.end;
-  });
+  highlights.push(highlight);
 
-  return isDuplicate ? highlights : [...highlights, highlight];
+  const sortedHighlights = sortHighlights(highlights);
+
+  return sortedHighlights;
+}
+
+export function mergeOverlaps(
+  highlights: Highlight[],
+  highlight: Highlight
+): Highlight[] {
+  return highlights.reduce<Highlight[]>(
+    (acc, curr) => {
+      let previous: Highlight = acc[acc.length - 1]!;
+      if (isOverlap(previous, curr)) {
+        acc[acc.length - 1] = mergeHighlights(previous, curr);
+        return acc;
+      } else {
+        acc.push(curr);
+        return acc;
+      }
+    },
+    [highlight]
+  );
 }
 
 export function isOverlap(
@@ -78,5 +97,5 @@ export function mergeHighlights(
 }
 
 export function sortHighlights(highlights: Highlight[]): Highlight[] {
-  return highlights.sort((h1, h2) => h1.start - h2.start);
+  return [...highlights.sort((h1, h2) => h1.start - h2.start)];
 }
