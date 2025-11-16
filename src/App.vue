@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import HighlightInputContainer from "./components/HighlightInputContainer.vue";
-import TextBox from "./components/TextBox.vue";
+import TextBoxContainer from "./components/TextBoxContainer.vue";
 </script>
 
 <template>
   <div class="basic">
     <div class="text-box">
-      <TextBox text="hello" />
+      <TextBoxContainer />
     </div>
     <div class="highlight-input"><HighlightInputContainer /></div>
   </div>
