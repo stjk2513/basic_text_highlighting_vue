@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useTextStore, type Text } from "../store/text";
+import { useTextStore } from "../store/text";
 import TextBox from "./TextBox.vue";
 
 const textStore = useTextStore();
